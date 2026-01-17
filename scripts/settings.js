@@ -11,7 +11,14 @@ export function registerVdoNinjaSettings() {
     default: {},
     onChange: () => {
       const client = game.webrtc?.client;
+
+      // Обновляем существующие iframe
       client?.refreshAll?.();
+
+      // Пересобираем тайлы (добавить/убрать камеры)
+      try {
+        ui?.webrtc?.render?.(true);
+      } catch (_err) { /* no-op */ }
     }
   });
 
