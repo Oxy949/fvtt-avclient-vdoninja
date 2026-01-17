@@ -1,0 +1,31 @@
+<form class="flexcol">
+
+  <div class="form-group">
+    <label><strong>Пользователь</strong></label>
+    <div class="form-fields">
+      <strong>VDO.Ninja viewer URL</strong>
+    </div>
+  </div>
+
+  {{#each users}}
+  <div class="form-group">
+    <label>{{this.name}}</label>
+    <div class="form-fields">
+      <input
+        type="url"
+        name="{{this.id}}"
+        value="{{this.url}}"
+        placeholder="{{../example}}"
+        spellcheck="false"
+      />
+    </div>
+  </div>
+  {{/each}}
+
+  <footer class="sheet-footer flexrow">
+    <button type="submit">
+      <i class="fas fa-save"></i>
+      Сохранить
+    </button>
+  </footer>
+</form>

@@ -1,0 +1,54 @@
+{
+  "id": "fvtt-avclient-vdoninja",
+  "title": "A/V VDO.Ninja",
+  "description": "Replacement for Foundry VTT v13 built-in A/V. Shows VDO.Ninja streams inside Foundry Camera Views.",
+  "version": "#{VERSION}#",
+  "library": "false",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [ 
+    {
+      "name": "Oxy949",
+      "email": "oxy949@gmail.com",
+      "url": "https://boosty.to/oxy949",
+      "discord": "oxy949",
+      "flags": {}
+    }
+  ],
+  "relationships": {
+    "systems": [],
+    "requires": []
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "scripts": [],
+  "styles": [
+    "styles/module.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    }
+  ],
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "license": "MIT",
+  "readme": "README.md",
+  "media": [
+    {
+      "type": "icon",
+      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
+    }
+  ]
+}
