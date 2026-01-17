@@ -238,7 +238,11 @@ export class VdoNinjaAVClient extends foundry.av.AVClient {
   _ensureEmbedInView({ view, userId, streamUrl }) {
     if (!view) return;
 
-    let wrapper = view.querySelector(".fvtt-vdo-iframe-wrapper");
+    // Prefer to insert the iframe wrapper inside the per-user `.video-container`
+    // so it overlays the actual video element and not the entire tile chrome.
+    const container = view.querySelector(".video-container") || view;
+
+    let wrapper = container.querySelector(".fvtt-vdo-iframe-wrapper");
     if (!wrapper) {
       wrapper = document.createElement("div");
       wrapper.className = "fvtt-vdo-iframe-wrapper";
@@ -246,8 +250,8 @@ export class VdoNinjaAVClient extends foundry.av.AVClient {
       wrapper.style.inset = "0";
       wrapper.style.pointerEvents = "none";
       wrapper.style.display = "block";
-      view.style.position = view.style.position || "relative";
-      view.appendChild(wrapper);
+      container.style.position = container.style.position || "relative";
+      container.appendChild(wrapper);
     }
 
     let iframe = wrapper.querySelector("iframe");
