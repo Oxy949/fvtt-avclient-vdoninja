@@ -1,4 +1,4 @@
-import { MODULE_ID } from "./settings.js";
+import { MODULE_ID, STREAMS_MAPPING_SETTING } from "./settings.js";
 
 export class VdoNinjaStreamsConfigApp extends FormApplication {
   static get defaultOptions() {
@@ -14,7 +14,7 @@ export class VdoNinjaStreamsConfigApp extends FormApplication {
   }
 
   getData(options = {}) {
-    const mapping = game.settings.get(MODULE_ID, "streams") || {};
+    const mapping = game.settings.get(MODULE_ID, STREAMS_MAPPING_SETTING) || {};
     const users = game.users.contents.map((u) => {
       return {
         id: u.id,
@@ -38,7 +38,7 @@ export class VdoNinjaStreamsConfigApp extends FormApplication {
       next[u.id] = raw;
     }
 
-    await game.settings.set(MODULE_ID, "streams", next);
+    await game.settings.set(MODULE_ID, STREAMS_MAPPING_SETTING, next);
     ui.notifications?.info("VDO.Ninja stream URLs saved.");
   }
 
