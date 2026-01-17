@@ -185,7 +185,7 @@ export class VdoNinjaAVClient extends foundry.av.AVClient {
 
   _iframeUrl(streamUrl, viewId) {
     const joiner = streamUrl.includes("?") ? "&" : "?";
-    return `${streamUrl}${joiner}view=${encodeURIComponent(viewId)}&cleanoutput=1&nobg=1&noheader=1`;
+    return `${streamUrl}${joiner}view=${encodeURIComponent(viewId)}&cover&hideheader`;
   }
 
   _getUserCameraView(userId) {
