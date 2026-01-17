@@ -9,13 +9,17 @@
   position: absolute;
   inset: 0;
   z-index: 20;
+  /* Don't let the iframe steal mouse interaction (dragging, resizing, etc.). */
+  pointer-events: none !important;
 }
 
 .fvtt-avclient-vdoninja-host iframe {
   width: 100%;
   height: 100%;
   border: 0;
+  pointer-events: none !important;
 }
+
 
 /* Streams config window spacing tweaks */
 #fvtt-avclient-vdoninja-streams-config form.flexcol {
