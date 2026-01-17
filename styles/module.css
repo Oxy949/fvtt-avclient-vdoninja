@@ -8,8 +8,6 @@
 .fvtt-avclient-vdoninja-host {
   position: absolute;
   inset: 0;
-  z-index: 20;
-  /* Don't let the iframe steal mouse interaction (dragging, resizing, etc.). */
   pointer-events: none !important;
 }
 
