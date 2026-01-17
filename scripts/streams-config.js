@@ -4,7 +4,7 @@ export class VdoNinjaStreamsConfigApp extends FormApplication {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: `${MODULE_ID}-streams-config`,
-      title: "VDO.Ninja streams",
+      title: game.i18n.localize("VDONINJA.StreamsConfig.title"),
       template: `modules/${MODULE_ID}/templates/streams-config.hbs`,
       width: 720,
       height: "auto",
@@ -25,8 +25,7 @@ export class VdoNinjaStreamsConfigApp extends FormApplication {
     });
 
     return {
-      users,
-      example: "https://vdo.ninja/?view=YOUR_VIEW_ID"
+      users
     };
   }
 
@@ -39,7 +38,7 @@ export class VdoNinjaStreamsConfigApp extends FormApplication {
     }
 
     await game.settings.set(MODULE_ID, STREAMS_MAPPING_SETTING, next);
-    ui.notifications?.info("VDO.Ninja stream URLs saved.");
+    ui.notifications?.info(game.i18n.localize("VDONINJA.StreamsConfig.saved"));
   }
 
   /**

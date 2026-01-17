@@ -5,7 +5,7 @@ export const STREAMS_MAPPING_SETTING = "streams";
 
 export function registerVdoNinjaSettings() {
   game.settings.register(MODULE_ID, STREAMS_MAPPING_SETTING, {
-    name: "VDO.Ninja streams (per user)",
+    name: game.i18n.localize("VDONINJA.Settings.streams.name"),
     scope: "world",
     config: false,
     type: Object,
@@ -18,10 +18,9 @@ export function registerVdoNinjaSettings() {
   });
 
   game.settings.registerMenu(MODULE_ID, "streamsMenu", {
-    name: "VDO.Ninja stream URLs",
-    label: "Configure VDO.Ninja URLs",
-    hint:
-      "Paste a VDO.Ninja viewer (\"view\") link for each Foundry user. Foundry camera tiles will show those streams.",
+    name: game.i18n.localize("VDONINJA.Settings.streams.menuName"),
+    label: game.i18n.localize("VDONINJA.Settings.streams.menuLabel"),
+    hint: game.i18n.localize("VDONINJA.Settings.streams.menuHint"),
     icon: "fas fa-video",
     type: VdoNinjaStreamsConfigApp,
     restricted: true

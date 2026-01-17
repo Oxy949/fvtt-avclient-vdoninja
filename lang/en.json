@@ -4,12 +4,25 @@
 
   "VDONINJA": {
     "ToggleToolbar": "Toggle Audio Sender",
-
     "Settings": {
+      "streams": {
+        "name": "VDO.Ninja streams (per user)",
+        "menuName": "VDO.Ninja stream URLs",
+        "menuLabel": "Configure VDO.Ninja URLs",
+        "menuHint": "Paste a VDO.Ninja viewer (\"view\") link for each Foundry user. Foundry camera tiles will show those streams."
+      },
       "gmForcePortraitHeight": {
         "name": "Override player portrait height",
         "hint": "If enabled, the GM can set a specific height for player portraits."
       }
+    }
+    ,"StreamsConfig": {
+      "user": "User",
+      "viewerUrl": "VDO.Ninja viewer URL",
+      "save": "Save",
+      "title": "VDO.Ninja streams",
+      "example": "https://vdo.ninja/?view=YOUR_VIEW_ID",
+      "saved": "VDO.Ninja stream URLs saved."
     }
   }
 }
