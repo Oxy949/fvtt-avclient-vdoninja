@@ -1,0 +1,47 @@
+<form class="fvtt-avclient-vdoninja-conference">
+  {{#if error}}
+    <p class="notification error">{{error}}</p>
+  {{/if}}
+
+  {{#if hasModes}}
+    <p>
+      <strong>Текущий режим:</strong>
+      <span class="current-mode">{{currentLabel}}</span>
+    </p>
+
+    {{#if settingKey}}
+      <p class="notes">
+        Core-setting: <code>{{settingKey}}</code>
+      </p>
+    {{else}}
+      <p class="notes">
+        Core-setting с полем <code>mode</code> не найден. Кнопки могут не работать.
+      </p>
+    {{/if}}
+
+    <div class="flexrow conference-buttons">
+      <button type="button" data-mode="off" class="conference-btn">
+        <i class="fas fa-ban"></i>
+        Выключено
+      </button>
+
+      <button type="button" data-mode="video" class="conference-btn">
+        <i class="fas fa-video"></i>
+        Только видео
+      </button>
+
+      <button type="button" data-mode="av" class="conference-btn">
+        <i class="fas fa-video"></i>
+        <i class="fas fa-microphone"></i>
+        Видео + аудио
+      </button>
+    </div>
+
+    <hr>
+
+    <p class="notes">
+      Это меняет режим встроенной конференции Foundry (core RTC/AV настройки).
+      Для VDO.Ninja iframe это важно в основном косвенно: влияет на то, как Foundry создаёт и показывает плитки камер.
+    </p>
+  {{/if}}
+</form>

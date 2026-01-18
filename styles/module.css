@@ -42,3 +42,16 @@
 #fvtt-avclient-vdoninja-streams-config .form-group:first-of-type {
   margin-top: 0;
 }
+
+/* Conference mode window */
+#fvtt-avclient-vdoninja-conference-mode .conference-buttons {
+  gap: 0.5rem;
+}
+
+#fvtt-avclient-vdoninja-conference-mode .conference-btn {
+  white-space: nowrap;
+}
+
+#fvtt-avclient-vdoninja-conference-mode .current-mode {
+  font-weight: 600;
+}
