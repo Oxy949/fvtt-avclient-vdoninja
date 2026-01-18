@@ -20,15 +20,19 @@ function getAVModesEnum() {
 
 function labelForMode(mode, AV_MODES) {
   if (!AV_MODES) return String(mode);
-  switch (mode) {
-    case AV_MODES.DISABLED:
-      return "Выключено";
-    case AV_MODES.VIDEO:
-      return "Только видео";
-    case AV_MODES.AUDIO_VIDEO:
-      return "Видео + аудио";
-    default:
-      return String(mode);
+  try {
+    switch (mode) {
+      case AV_MODES.DISABLED:
+        return game.i18n.localize("VDONINJA.Conference.modes.off") || String(mode);
+      case AV_MODES.VIDEO:
+        return game.i18n.localize("VDONINJA.Conference.modes.video") || String(mode);
+      case AV_MODES.AUDIO_VIDEO:
+        return game.i18n.localize("VDONINJA.Conference.modes.av") || String(mode);
+      default:
+        return String(mode);
+    }
+  } catch (e) {
+    return String(mode);
   }
 }
 
@@ -114,7 +118,7 @@ export class ConferenceModeConfigApp extends FormApplication {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: `${MODULE_ID}-conference-mode`,
-      title: "A/V: Режим конференции",
+      title: game.i18n.localize("VDONINJA.Conference.title"),
       template: `modules/${MODULE_ID}/templates/conference-mode.hbs`,
       width: 520,
       height: "auto",
@@ -130,7 +134,7 @@ export class ConferenceModeConfigApp extends FormApplication {
     if (!AV_MODES) {
       return {
         ...super.getData(options),
-        error: "Не нашёл AV_MODES (AVSettings). Версия Foundry может быть несовместима.",
+        error: game.i18n.localize("VDONINJA.Conference.errorNoAVModes"),
         hasModes: false
       };
     }
@@ -147,7 +151,15 @@ export class ConferenceModeConfigApp extends FormApplication {
         off: AV_MODES.DISABLED,
         video: AV_MODES.VIDEO,
         av: AV_MODES.AUDIO_VIDEO
-      }
+      },
+      // UI labels for the template
+      currentModeTitle: game.i18n.localize("VDONINJA.Conference.currentModeTitle"),
+      coreSettingLabel: game.i18n.localize("VDONINJA.Conference.coreSettingLabel"),
+      noSettingNote: game.i18n.localize("VDONINJA.Conference.noSettingNote"),
+      offLabel: game.i18n.localize("VDONINJA.Conference.modes.off"),
+      videoLabel: game.i18n.localize("VDONINJA.Conference.modes.video"),
+      avLabel: game.i18n.localize("VDONINJA.Conference.modes.av"),
+      notesParagraph: game.i18n.localize("VDONINJA.Conference.notesParagraph")
     };
   }
 
@@ -160,7 +172,7 @@ export class ConferenceModeConfigApp extends FormApplication {
 
       const AV_MODES = getAVModesEnum();
       if (!AV_MODES) {
-        ui.notifications?.error("Не нашёл AV_MODES (AVSettings). Не могу изменить режим.");
+        ui.notifications?.error(game.i18n.localize("VDONINJA.Conference.errorNoAVModesChange"));
         return;
       }
 
@@ -174,11 +186,11 @@ export class ConferenceModeConfigApp extends FormApplication {
 
       const result = await tryUpdateAVMode(mode);
       if (!result) {
-        ui.notifications?.warn("Не смог обновить A/V режим: не нашёл подходящий core-setting или нет прав на world-setting.");
+        ui.notifications?.warn(game.i18n.localize("VDONINJA.Conference.warnUpdateFailed"));
         return;
       }
 
-      ui.notifications?.info(`A/V: режим конференции обновлён (${result.fullKey}: ${result.old} → ${result.new})`);
+      ui.notifications?.info(game.i18n.format("VDONINJA.Conference.updatedInfo", { fullKey: result.fullKey, old: result.old, new: result.new }));
 
       // Nudge our own client to re-sync embeds if necessary.
       try { game.webrtc?.client?.refreshAll?.(); } catch {}
